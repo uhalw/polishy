@@ -1,17 +1,66 @@
 @use '../variables' as *;
-// 匯入變數不可於index.scss中匯入 
+// 匯入變數不可於 index.scss 中匯入
 
+// ------------------------------------------------------------
+// Responsive helpers — mobile-first, using shared breakpoints
+// ------------------------------------------------------------
 
+// @include up($bp-md) { ... }  → min-width media query
+@mixin up($bp) {
+    @media (min-width: $bp) { @content; }
+}
+
+// @include down($bp-sm) { ... } → max-width media query
+@mixin down($bp) {
+    @media (max-width: ($bp - 0.02px)) { @content; }
+}
+
+// Tablet-and-up / desktop-and-up shortcuts
+@mixin tablet { @include up($bp-sm) { @content; } }
+@mixin desktop { @include up($bp-md) { @content; } }
+@mixin mobile { @include down($bp-sm) { @content; } }
+
+// Respect users who prefer reduced motion
+@mixin reduced-motion {
+    @media (prefers-reduced-motion: reduce) { @content; }
+}
+
+// ------------------------------------------------------------
+// Layout helpers
+// ------------------------------------------------------------
+
+@mixin container($max: $container) {
+    width: 100%;
+    max-width: $max;
+    margin-inline: auto;
+    padding-inline: $page-gutter;
+}
+
+// Accessible focus ring used across interactive elements
+@mixin focus-ring($color: $blue) {
+    &:focus-visible {
+        outline: 3px solid rgba($color, 0.55);
+        outline-offset: 3px;
+        border-radius: $radius-sm;
+    }
+}
+
+// ------------------------------------------------------------
+// Effects (kept from original, refreshed)
+// ------------------------------------------------------------
 
 @mixin glassmorphism {
-    background-image: linear-gradient(4deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, .15) 55%, rgba(255, 255, 255, .4));
-    backdrop-filter: brightness(120%) blur(5px);
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15); // 容器外圍有陰影
+    background-image: linear-gradient(4deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4) 55%, rgba(255, 255, 255, 0.6));
+    backdrop-filter: blur(8px);
+    box-shadow: $shadow-md;
 }
 
 @mixin greenlinear {
-    background: $green 30%;
-    background: linear-gradient(90deg, rgba(164, 198, 41, 1) 22%, rgba(225, 238, 137, 1) 100%);
-    backdrop-filter: blur(5px);
+    background: linear-gradient(90deg, $green 22%, $lightgreen 100%);
+}
 
+// Highlighter-pen underline used on emphasised words / headings
+@mixin marker($color, $height: 38%) {
+    background-image: linear-gradient(transparent #{100% - $height}, rgba($color, 0.45) #{100% - $height});
+    background-repeat: no-repeat;
 }

@@ -1,245 +1,234 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Ensure ScrollTrigger plugin is registered once
-    gsap.registerPlugin(ScrollTrigger);
+/* ============================================================
+ *  Polishy — site interactions
+ *  Vanilla JS for behaviour; GSAP only as progressive enhancement.
+ *  Content is visible by default — nothing here is required to read
+ *  the page. Respects prefers-reduced-motion.
+ * ========================================================== */
 
-    // GSAP animations for headings and text
-    gsap.from(".heading", { duration: 0.8, opacity: 0, x: 30, delay: 0.2 });
-    gsap.from(".subheading", { duration: 1, opacity: 0, x: -30, delay: 0.6 });
-    gsap.from(".paragraph", { duration: 1, opacity: 0, y: 20, delay: 1 });
-    gsap.from(".block", { duration: 1, opacity: 0, y: 10, delay: 1.6 });
+(function () {
+  "use strict";
 
-    // GSAP animation to fade out .quotes on scroll
-    gsap.to(".quotes", {
-        opacity: 0,
-        scrollTrigger: {
-            trigger: ".quotes",
-            start: "top center",
-            end: "bottom top",
-            scrub: true,
-        }
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  const $ = (sel, ctx = document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+
+  /* ---------------------------------------------------------
+   *  Mobile navigation toggle
+   * ------------------------------------------------------- */
+  function initNav() {
+    const header = $("[data-header]");
+    const toggle = $("[data-nav-toggle]");
+    if (!header || !toggle) return;
+
+    const setOpen = (open) => {
+      header.classList.toggle("nav-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "關閉主選單" : "開啟主選單");
+    };
+
+    toggle.addEventListener("click", () =>
+      setOpen(!header.classList.contains("nav-open"))
+    );
+
+    // Close the menu after following an in-page link
+    $$(".nav-menu a, .nav-menu .link-btn").forEach((link) =>
+      link.addEventListener("click", () => setOpen(false))
+    );
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setOpen(false);
     });
 
+    /* Hide header when scrolling down, reveal when scrolling up */
+    let lastY = window.scrollY;
+    let ticking = false;
 
-    // Bubble animations with yoyo effect
-    const bubbleTimeline = gsap.timeline({ repeat: -1, yoyo: true });
-    bubbleTimeline
-        .to(".bubbles img:nth-child(1)", {
-            duration: 5,
-            y: -50,
-            x: 100,
-            opacity: 0.8,
-            scale: 1.2,
-            ease: "power2.inOut"
-        })
-        .to(".bubbles img:nth-child(2)", {
-            duration: 6,
-            y: 40,
-            x: 30,
-            opacity: 0.7,
-            scale: 1.1,
-            ease: "back.out(1.7)"
-        }, "<") // Start at the same time as the previous animation
-        .to(".bubbles img:nth-child(3)", {
-            duration: 6,
-            y: -30,
-            x: 10,
-            opacity: 0.9,
-            scale: 1.3,
-            ease: "back.out(1.7)"
-        }, "<");
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (!header.classList.contains("nav-open")) {
+        if (y > 120 && y > lastY) header.classList.add("is-hidden");
+        else header.classList.remove("is-hidden");
+      }
+      lastY = y;
+      ticking = false;
+    };
 
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    });
+  }
 
+  /* ---------------------------------------------------------
+   *  Modals (about / learn-more)
+   * ------------------------------------------------------- */
+  function initModals() {
+    let lastFocused = null;
 
-    // Navbar show/hide on scroll
-    const navbar = document.querySelector(".navbar");
+    const open = (modal) => {
+      if (!modal) return;
+      lastFocused = document.activeElement;
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      const close = $("[data-modal-close]", modal);
+      if (close) close.focus();
+    };
 
-    let lastScrollY = window.scrollY; // Track the last scroll position
+    const close = (modal) => {
+      if (!modal) return;
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      if (lastFocused) lastFocused.focus();
+    };
 
-    // Initially hide the navbar if the page is loaded and there is no scroll
-    navbar.style.top = "-120px"; // Start with navbar hidden
+    $$("[data-modal-open]").forEach((btn) =>
+      btn.addEventListener("click", () =>
+        open(document.getElementById(btn.dataset.modalOpen))
+      )
+    );
 
-    document.addEventListener("scroll", () => {
-        const currentScrollY = window.scrollY;
-
-        // If scrolling down and passed the 50px threshold, hide the navbar
-        if (currentScrollY > 50 && currentScrollY > lastScrollY) {
-            navbar.style.top = "-120px"; // Hide navbar when scrolling down
-        }
-        // If scrolling up, show the navbar
-        else if (currentScrollY < lastScrollY) {
-            navbar.style.top = "0"; // Show navbar when scrolling up
-        }
-
-        // Update the lastScrollY to the current scroll position
-        lastScrollY = currentScrollY;
+    $$("[data-modal]").forEach((modal) => {
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) close(modal);
+      });
+      const closeBtn = $("[data-modal-close]", modal);
+      if (closeBtn) closeBtn.addEventListener("click", () => close(modal));
     });
 
-
-    // Messy section animations on scroll
-    gsap.timeline({
-        scrollTrigger: {
-            trigger: ".anyone",
-            start: "top 80%",
-            end: "bottom top",
-            toggleActions: "play none none reverse",
-            markers: false
-        }
-    })
-        .fromTo(".messy img:nth-child(2)", { opacity: 0 }, { opacity: 1, duration: 0.5 })
-        .fromTo(".messy img:nth-child(3)", { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 1 })
-        .fromTo(".messy img:nth-child(4)", { opacity: 0, x: 10 }, { opacity: 1, x: 0, duration: 1 });
-
-    // Figure image animations on scroll
-    gsap.timeline({
-        scrollTrigger: {
-            trigger: "#front",
-            start: "top 80%",
-            end: "bottom top",
-            toggleActions: "play none none reverse",
-            markers: false,
-        },
-        repeat: -1,
-    })
-        .fromTo(".figure img:nth-child(1)", { opacity: 1 }, { opacity: 0, duration: 1 }, "-=0.5")
-        .fromTo(".figure img:nth-child(2)", { opacity: 0 }, { opacity: 1, duration: 1 })
-        .fromTo(".figure img:nth-child(3)", { opacity: 0 }, { opacity: 1, duration: 1 })
-        .fromTo(".figure img:nth-child(4)", { opacity: 0 }, { opacity: 1, duration: 1 });
-
-    // Bubble animation for #bubble-blue2
-    gsap.from("#bubble-blue2 img", {
-        duration: 6,
-        opacity: 1,
-        scale: 0.8,
-        x: 600,
-        y: 60,
-        ease: "power3.inOut",
-        delay: 2
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        const openModal = $(".modal.is-open");
+        if (openModal) close(openModal);
+      }
     });
+  }
 
-    // Continuous floating effect for #bubble-blue2
-    gsap.to("#bubble-blue2 img", {
-        duration: 4,
-        scale: 1.2,
-        x: 400,
-        y: 90,
+  /* ---------------------------------------------------------
+   *  日常舉例 — accordion cards
+   * ------------------------------------------------------- */
+  function initAccordion() {
+    $$(".example-toggle").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const expanded = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!expanded));
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------
+   *  Scroll reveal (no GSAP dependency)
+   * ------------------------------------------------------- */
+  function initReveal() {
+    const items = $$(".reveal");
+    if (!items.length) return;
+
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+      items.forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+    );
+
+    items.forEach((el) => io.observe(el));
+  }
+
+  /* ---------------------------------------------------------
+   *  GSAP enhancements (optional, decorative only)
+   * ------------------------------------------------------- */
+  function initGsap() {
+    if (prefersReducedMotion || typeof window.gsap === "undefined") return;
+    const gsap = window.gsap;
+    if (window.ScrollTrigger) gsap.registerPlugin(window.ScrollTrigger);
+
+    // Floating bubbles
+    $$("[data-bubbles] img").forEach((img, i) => {
+      gsap.to(img, {
+        y: i % 2 ? 36 : -44,
+        x: i % 2 ? 24 : 18,
+        scale: 1.08,
+        duration: 5 + i,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
-        delay: 1
+      });
     });
 
-    // About popup functionality
-    const openPopup = document.querySelector("#openPopup"); // Button to open the popup
-    const closePopup = document.querySelector("#popup .close"); // Close button inside the popup
-    const popup = document.querySelector("#popup"); // Popup container
+    // Hero portrait crossfade (me1 → me4)
+    const figures = $$("[data-figure] img");
+    if (figures.length > 1) {
+      gsap.set(figures, { opacity: 0 });
+      gsap.set(figures[0], { opacity: 1 });
+      const tl = gsap.timeline({ repeat: -1 });
+      figures.forEach((img, i) => {
+        const next = figures[(i + 1) % figures.length];
+        tl.to(img, { opacity: 0, duration: 0.8 }, "+=1.4").to(
+          next,
+          { opacity: 1, duration: 0.8 },
+          "<"
+        );
+      });
+    }
 
-    // Open popup
-    openPopup.addEventListener("click", () => {
-        popup.style.display = "flex"; // Show the popup
-    });
+    // "你身邊也有這種人嗎" — staggered figure reveal on scroll
+    if (window.ScrollTrigger) {
+      const messy = $$("[data-messy] img");
+      if (messy.length) {
+        gsap.from(messy, {
+          opacity: 0,
+          y: 24,
+          duration: 0.7,
+          stagger: 0.15,
+          scrollTrigger: { trigger: "[data-messy]", start: "top 80%" },
+        });
+      }
 
-    // Close popup
-    closePopup.addEventListener("click", () => {
-        popup.style.display = "none"; // Hide the popup
-    });
+      // Fade the opening quotes as the reader scrolls past
+      const quotes = $("[data-quotes]");
+      if (quotes) {
+        gsap.to(quotes, {
+          opacity: 0,
+          scrollTrigger: {
+            trigger: quotes,
+            start: "center center",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      }
+    }
+  }
 
-    // Close popup when clicking outside the content
-    popup.addEventListener("click", (e) => {
-        if (e.target === popup) {
-            popup.style.display = "none"; // Hide the popup
-        }
-    });
-});
+  /* ---------------------------------------------------------
+   *  Boot
+   * ------------------------------------------------------- */
+  function init() {
+    initNav();
+    initModals();
+    initAccordion();
+    initReveal();
+    initGsap();
+  }
 
-// function showMore(id) {
-//     var div = document.getElementById(id);
-//     if (div.style.display === "none" || div.style.display === "") {
-//         div.style.display = "block";
-//     } else {
-//         div.style.display = "none";
-//     }
-// }
-
-
-
-// GSReveal
-// Register ScrollTrigger
-gsap.registerPlugin(ScrollTrigger);
-
-// Apply reveal animation to all elements with 'gs-reveal' class
-gsap.utils.toArray(".gs-reveal").forEach((element) => {
-    gsap.from(element, {
-        scrollTrigger: {
-            trigger: element,
-            start: "top 85%", // Trigger when top of element reaches 85% of viewport
-            toggleActions: "play none none none", // Play animation only once
-        },
-        opacity: 0, // Start hidden
-        y: 50, // Slide up from 50px below
-        duration: .5, // Animation duration
-        ease: "power2.out", // Smooth easing
-    });
-});
-
-
-
-// About popup functionality
-const openLearnPopup = document.querySelector("#openLearnPopup");
-const closeLearnPopup = document.querySelector("#learnpopup .close");
-const learnpopup = document.querySelector("#learnpopup");
-
-// Toggle popup visibility
-const togglePopup = (isVisible) => {
-    learnpopup.style.display = isVisible ? "flex" : "none";
-};
-
-// Event listeners
-openLearnPopup.addEventListener("click", () => togglePopup(true)); // 點擊顯示彈跳視窗
-closeLearnPopup.addEventListener("click", () => togglePopup(false)); // 點擊關閉按鈕
-learnpopup.addEventListener("click", (e) => {
-    if (e.target === learnpopup) togglePopup(false); // 點擊背景關閉
-});
-document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") togglePopup(false); // 按 ESC 鍵關閉
-});
-
-
-// all animation js
-
-document.addEventListener("DOMContentLoaded", () => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.from("h2, h3, h4, .h2 ", {
-        opacity: 0,
-        y: 20,
-        duration: 1,
-        stagger: 0.1,
-        scrollTrigger: {
-            trigger: "h2, h3, h4 .h2",
-            start: "top 80%",
-            toggleActions: "play none none none",
-        },
-    });
-});
-
-// other ani
-
-document.addEventListener("DOMContentLoaded", () => {
-    const headings = document.querySelectorAll("h2, h3, h4");
-
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("animate");
-                    observer.unobserve(entry.target); // Stop observing once animated
-                }
-            });
-        },
-        {
-            threshold: 0.1, // Trigger when 10% of the element is in view
-        }
-    );
-
-    headings.forEach((heading) => observer.observe(heading));
-});
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();

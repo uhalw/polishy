@@ -1,85 +1,109 @@
-h1,
-h2,
-h3,
-h4,
-h5,
-p,
-a,
-summary,
-details,
-button,
-label,
-small,
-head,
-footer {
-    font-family: "Kiwi Maru", "Noto Sans TC", sans-serif;
-    font-weight: $regular;
-    list-style: unset;
-    text-decoration: none;
-    color: rgb(53, 53, 53);
+@use 'variables' as *;
+@use 'function' as *;
+
+// ------------------------------------------------------------
+// Modern reset + base typography
+// ------------------------------------------------------------
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
-
-h1 {
-    font-size: $h1-size;
+* {
+    margin: 0;
 }
-
-h2 {
-    font-size: $h2-size;
-}
-
-h3 {
-    font-size: $h3-size;
-}
-
-h4 {
-    font-size: $h4-size;
-}
-
-h5 {
-    font-size: $h5-size;
-}
-
-p {
-    font-size: $p-size;
-    font-weight: 300;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-
-}
-
-
-.white {
-    color: $green;
-}
-
-.bold {
-    font-weight: bold;
-}
-
-// 網站邊距
-main {
-    padding: 0 10vw;
-}
-
-// 網站每部分上下間隔距離
-header,
-section {
-    padding: 15vh 0;
-}
-
 
 html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 88px; // offset for the sticky navbar on anchor jumps
 }
 
-// 超連結hover
+@include reduced-motion {
+    html { scroll-behavior: auto; }
+}
 
-a:hover{
-    color: $blue;
-    text-decoration: underline;
+body {
+    font-family: $font;
+    font-weight: $regular;
+    font-size: $p-size;
+    line-height: $leading;
+    color: $ink;
+    background-color: $cream;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+}
 
+h1, h2, h3, h4, h5 {
+    font-weight: $bold;
+    line-height: $leading-tight;
+    color: $ink;
+    text-wrap: balance;
+}
+
+h1 { font-size: $h1-size; }
+h2 { font-size: $h2-size; }
+h3 { font-size: $h3-size; }
+h4 { font-size: $h4-size; }
+h5 { font-size: $h5-size; }
+
+p {
+    font-size: $p-size;
+    font-weight: $light;
+    line-height: $leading;
+    text-wrap: pretty;
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color $dur-fast $ease;
+
+    &:hover {
+        color: $blue;
+    }
+
+    @include focus-ring;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    @include focus-ring($green);
+}
+
+:focus-visible {
+    outline: 3px solid rgba($blue, 0.55);
+    outline-offset: 3px;
+}
+
+.bold { font-weight: $bold; }
+.white { color: $green; }
+
+// Visually-hidden, still available to screen readers
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }

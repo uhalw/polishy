@@ -1,175 +1,120 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" class="no-js">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>參考資料｜Polish</title>
+    <title>參考資料｜Polishy</title>
+    <meta name="description" content="Polishy 網站內容的參考資料與資料來源，包含神經多樣性定義、學習障礙、注意力不足、睡眠障礙與 ADHD 量表。">
+    <meta name="theme-color" content="#A4C629">
+    <script>document.documentElement.classList.replace('no-js', 'js');</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&display=swap"
+        rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
+    <a class="visually-hidden" href="#main">跳至主要內容</a>
 
-    <!------------>
-    <!-- Navbar -->
-    <!------------>
-
-    <section class="navbar">
-        <div class="logo">
-            <img src="./images/vector/logo-outline.svg" alt="Polishy Logo">
-            <h2 id="logoH2"> <a href="index.html" /> Polishy</h2>
-            <a href="index.html#example">生活舉例</a>
-            <a href="index.html#identity">身分選擇</a>
-            <a href="index.html#post">相關文章</a>
-
-            <!-- Button to open the popup -->
-            <!-- <button id="openPopup">關於 Polishy</button> -->
-            <!-- Popup container -->
-            <!-- <div id="popup" class="popup"> -->
-                <!-- <div class="popup-content"> -->
-                    <!-- <span id="closePopup" class="close">&times;</span> -->
-                    <!-- <h2>關於Polishy</h2> -->
-                    <!-- <p>Polishy 是一個介紹神經多樣性（Neurodiversity） -->
-                        <!-- 的平台，「神經多樣性」強調每個人神經系統的運作方式都有獨特性，如自閉症、ADHD、學習障礙等特質。這些差異並非缺陷，而是多元化的存在。希望透過此平台提升大衆對神經多樣性的認知與理解，減少因缺乏相關知識而導致的資訊落差與誤解。 -->
-                        <!-- <br>
-                        <br>
-                        Polishy 的發音為「波莉許」，是由 Polish（打磨、拋光）和
-                        Shy（害羞、緊張）結合而成的英文創意詞。我們希望每一塊內向、羞於表達的璞玉，都能找到屬於自己的生活方式。即使擁有非典型的特質，也能在打磨拋光後閃閃發亮。
-                    </p>
-                    <button id="closePopup" class="close">關閉視窗</button> -->
-                <!-- </div> -->
-            <!-- </div> -->
+    <header class="site-header" data-header>
+        <div class="nav-inner">
+            <a class="brand" href="index.html">
+                <img src="./images/vector/logo-outline.svg" alt="">
+                <span class="brand-name">Polishy</span>
+            </a>
+            <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-nav"
+                aria-label="開啟主選單">
+                <span></span><span></span><span></span>
+            </button>
+            <nav id="primary-nav" class="nav-menu" aria-label="主要導覽">
+                <ul>
+                    <li><a href="index.html#example">生活舉例</a></li>
+                    <li><a href="index.html#identity">身分選擇</a></li>
+                    <li><a href="index.html#post">相關文章</a></li>
+                    <li><a class="btn" href="test.html">自我檢測</a></li>
+                </ul>
+            </nav>
         </div>
+    </header>
 
-        <div class="textbtn">
-            <a href="test.html" class="button" alt="learn more">自我檢測</a>
-        </div>
-    </section>
-
-    <div class="bubbles" id="bubbleref">
-        <img src="./images/vector/bubble-blue1.svg" id="bubble-blue1" alt="Bubble 1">
-        <img src="./images/vector/bubble-green1.svg" id="bubble-green1" alt="Bubble 2">
-        <img src="./images/vector/bubble-pink1.svg" id="bubble-pink1" alt="Bubble 3">
+    <div class="bubbles" id="bubbleref" aria-hidden="true">
+        <img src="./images/vector/bubble-blue1.svg" id="bubble-blue1" alt="">
+        <img src="./images/vector/bubble-green1.svg" id="bubble-green1" alt="">
+        <img src="./images/vector/bubble-pink1.svg" id="bubble-pink1" alt="">
     </div>
 
-
-    <main>
-
-        <div class="h2">
-            <!-- <img src="./images/vector/decor-yellow-long.svg" alt=""> -->
+    <main id="main" class="page-main">
+        <div class="section-head" style="justify-content:flex-start;">
             <h2>參考資料</h2>
         </div>
         <h4>首頁的參考資料</h4>
 
-
-        <!-- 日常舉例 -->
-
-        <h5>神經多樣性定義</h5>
-        <div class="link-container">
-            <li>
-                <a href="https://www.tscap.org.tw/tw/ImgTscapOrg/20230713190901.pdf">
-                    神經多樣性概念：對臨床醫師和科學家有幫助嗎？ </a>
-                <div class="link-preview">
-                    <strong>神經多樣性概念</strong>
-                    <br>
+        <div class="ref-list">
+            <h5>神經多樣性定義</h5>
+            <div class="ref-item">
+                <a href="https://www.tscap.org.tw/tw/ImgTscapOrg/20230713190901.pdf" target="_blank" rel="noopener">
+                    神經多樣性概念：對臨床醫師和科學家有幫助嗎？</a>
+                <p class="ref-note">
                     原文出處：Sonuga-Barke E, Thapar A. Lancet Psychiatry. 2021; 8(7): 559-561.
-                    三軍總醫院精神醫學部兒童青少年研究醫師王雅萱　摘譯 
-                    <br>
-                    ADHD 和自閉症類群障礙症（以下簡稱自閉症）過去被認為是跟一般人有所區別的、類
-                    別性的（categorical）、始於兒童早期的神經發展障礙症，並且可能是腦功能異常的結果。
-                    這樣的定義提供了臨床實務的依循並引導近40 年的研究發展。然而，臨床的經驗和研究
-                    證據卻挑戰了現有的概念。
-                </div>
-            </li>
-        </div>
+                    三軍總醫院精神醫學部兒童青少年研究醫師王雅萱　摘譯。
+                    ADHD 和自閉症類群障礙症過去被認為是與一般人有所區別的、類別性的、始於兒童早期的神經發展障礙症，並且可能是腦功能異常的結果。然而臨床經驗和研究證據卻挑戰了現有的概念。
+                </p>
+            </div>
 
+            <h5>日常舉例</h5>
+            <div class="ref-item">
+                <a href="https://wd.vghtpe.gov.tw/PMREIP/Fpage.action?muid=8187&fid=8287" target="_blank" rel="noopener">
+                    學習障礙介紹｜臺北榮總醫院復健部兒童發展評估中心</a>
+                <p class="ref-note">
+                    由臺北榮總復健部陳玉蘭職能治療師等人撰寫。學習障礙是一群學習異常現象的統稱，包括各種不同的類型，並不同於一般所說的學習困難。
+                </p>
+            </div>
+            <div class="ref-item">
+                <a href="https://wd.vghtpe.gov.tw/vghpsy/Fpage.action?muid=452&fid=108" target="_blank" rel="noopener">
+                    注意力不足／過動症｜臺北榮總醫院精神醫學部</a>
+                <p class="ref-note">榮總醫院精神醫學部的專業解說與治療建議。</p>
+            </div>
+            <div class="ref-item">
+                <a href="https://www.tph.mohw.gov.tw/?aid=801&pid=26&page_name=detail&iid=1131" target="_blank" rel="noopener">
+                    睡眠障礙問與答｜衛生福利部臺北醫院</a>
+                <p class="ref-note">衛生福利部提供的關於睡眠障礙的常見問題與回答。</p>
+            </div>
 
-
-        <h5>日常舉例</h5>
-        <div class="link-container">
-            <li>
-                <a href="https://wd.vghtpe.gov.tw/PMREIP/Fpage.action?muid=8187&fid=8287">
-                    學習障礙介紹 | 臺北榮總醫院復健部兒童發展評估中心
-                </a>
-                <div class="link-preview">
-                    <strong>學習障礙介紹</strong><br>
-                    由台北榮總復健部陳玉蘭職能治療師等人撰寫。
-                    <br>
-                    網站指出學習障礙是一群學習異常現象的統稱，包括各種不同的類型。學習障礙並不同於一般說的學習困難，雖然智力正常，但可能會出現學習成就和潛在能力之間有很大的差距，或是個體本身不同能力之間差異很大，而產生令人難解的矛盾現象。
-                </div>
-            </li>
-        </div>
-
-        <div class="link-container">
-            <li>
-                <a href="https://wd.vghtpe.gov.tw/vghpsy/Fpage.action?muid=452&fid=108">
-                    注意力不足/過動症 | 臺北榮總醫院精神醫學部
-                </a>
-                <div class="link-preview">
-                    <strong>注意力不足/過動症</strong><br>
-                    榮總醫院精神醫學部的專業解說與治療建議。
-                </div>
-            </li>
-        </div>
-        <div class="link-container">
-            <li>
-                <a href="https://www.tph.mohw.gov.tw/?aid=801&pid=26&page_name=detail&iid=1131">
-                    睡眠障礙問與答 | 衛生福利部臺北醫院
-                </a>
-                <div class="link-preview">
-                    <strong>睡眠障礙問與答</strong><br>
-                    衛生福利部提供的關於睡眠障礙的常見問題與回答。
-                </div>
-            </li>
-        </div>
-        <hr>
-        <h3>測驗</h3>
-        <div class="link-container">
-            <a href="https://www.hcp.med.harvard.edu/ncs/ftpdir/adhd/adhd/Old%20Versions/18Q-Chinese-Traditional.pdf">
-                成人ADHD自填量表(ASRS)症狀檢核表
-            </a>
-            <div class="link-preview">
-                <strong>成人 ADHD 自填量表</strong><br>
-                一份用於評估成人 ADHD 症狀的檢核表，由哈佛醫學院提供。
+            <h5>測驗</h5>
+            <div class="ref-item">
+                <a href="https://www.hcp.med.harvard.edu/ncs/ftpdir/adhd/adhd/Old%20Versions/18Q-Chinese-Traditional.pdf"
+                    target="_blank" rel="noopener">成人 ADHD 自填量表（ASRS）症狀檢核表</a>
+                <p class="ref-note">一份用於評估成人 ADHD 症狀的檢核表，由哈佛醫學院提供。</p>
             </div>
         </div>
     </main>
-    <!---------->
-    <!-- 頁尾 -->
-    <!---------->
 
-    <footer>
-        <div class="navbar-btm">
-            <li>
-                <a href="./ref.html">參考文獻</a>
-            </li>
-            <li>All Images are from&ensp;
-                <a href="https://www.vectorstock.com/royalty-free-vectors/vectors-by_Flashvector">Flashvector</a>
-            </li>
-        </div>
-        <div class="text">
-            <small class="disclaimer">※本網站僅供學生練習用作品，無任何商業營利用途。</small><br>
-            <small class=" contact">如有任何問題或建議，請寄信至： <a href="mailto:uhalw95@gmail.com">uhalw95@gmail.com</a>
-            </small><br>
-            <small>Polishy &copy; 2025
-                <a href="https://lauraycwang.wordpress.com/">Yu-Chen Wang.</a>
-                All Rights Reserved.</small>
+    <!-- ============ Footer ============ -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <ul class="footer-links">
+                <li><a href="./ref.html">參考文獻</a></li>
+                <li>All images from
+                    <a href="https://www.vectorstock.com/royalty-free-vectors/vectors-by_Flashvector"
+                        target="_blank" rel="noopener">Flashvector</a>
+                </li>
+            </ul>
+            <div class="footer-meta">
+                <small>※ 本網站僅供學生練習用作品，無任何商業營利用途。</small><br>
+                <small>如有任何問題或建議，請寄信至：<a href="mailto:uhalw95@gmail.com">uhalw95@gmail.com</a></small><br>
+                <small>Polishy &copy; 2025
+                    <a href="https://lauraycwang.wordpress.com/" target="_blank" rel="noopener">Yu-Chen Wang.</a>
+                    All Rights Reserved.</small>
+            </div>
         </div>
     </footer>
-    <!---------->
-    <!-- 程式區 -->
-    <!---------->
 
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <!-- JS -->
-    <script src="./js/script.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script defer src="./js/script.js"></script>
 </body>
 
 </html>

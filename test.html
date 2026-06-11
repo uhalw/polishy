@@ -1,64 +1,56 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" class="no-js">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>自我檢測</title>
+    <title>自我檢測｜Polishy</title>
+    <meta name="description" content="成人 ADHD 自填量表（ASRS）線上症狀檢核表，約五分鐘完成，結果僅供參考。">
+    <meta name="theme-color" content="#A4C629">
+    <script>document.documentElement.classList.replace('no-js', 'js');</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&display=swap"
+        rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-    <section class="navbar">        
-        <div class="logo">
-        <img src="./images/vector/logo-outline.svg" alt="Polishy Logo">
-        <h2 id="logoH2"> <a href="index.html" /> Polishy</h2>
-        <a href="index.html#example">生活舉例</a>
-        <a href="index.html#identity">身分選擇</a>
-        <a href="index.html#post">相關文章</a>
+    <a class="visually-hidden" href="#quiz">跳至測驗</a>
 
-        <!-- Button to open the popup -->
-        <!-- <button id="openPopup">關於 Polishy</button> -->
-        <!-- Popup container -->
-        <!-- <div id="popup" class="popup">
-            <div class="popup-content">
-                <h2>關於Polishy</h2>
-                <p>Polishy 是一個介紹神經多樣性（Neurodiversity）
-                    的平台，「神經多樣性」強調每個人神經系統的運作方式都有獨特性，如自閉症、ADHD、學習障礙等特質。這些差異並非缺陷，而是多元化的存在。希望透過此平台提升大衆對神經多樣性的認知與理解，減少因缺乏相關知識而導致的資訊落差與誤解。
-                    <br>
-                    <br>
-                    Polishy 的發音為「波莉許」，是由 Polish（打磨、拋光）和
-                    Shy（害羞、緊張）結合而成的英文創意詞。我們希望每一塊內向、羞於表達的璞玉，都能找到屬於自己的生活方式。即使擁有非典型的特質，也能在打磨拋光後閃閃發亮。
-                </p>
-                <button id="closePopup" class="close">關閉視窗</button>
-            </div>
-        </div> -->
-    </div>
+    <header class="site-header" data-header>
+        <div class="nav-inner">
+            <a class="brand" href="index.html">
+                <img src="./images/vector/logo-outline.svg" alt="">
+                <span class="brand-name">Polishy</span>
+            </a>
+            <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-nav"
+                aria-label="開啟主選單">
+                <span></span><span></span><span></span>
+            </button>
+            <nav id="primary-nav" class="nav-menu" aria-label="主要導覽">
+                <ul>
+                    <li><a href="index.html#example">生活舉例</a></li>
+                    <li><a href="index.html#identity">身分選擇</a></li>
+                    <li><a href="index.html#post">相關文章</a></li>
+                    <li><a href="ref.html">參考文獻</a></li>
+                    <li><a class="btn" href="test.html">自我檢測</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <div class="textbtn">
-        <a href="test.html" class="button" alt="learn more">自我檢測</a>
-    </div>
-    </section>
-
-    <div class="h2">
-        <!-- <img src="./images/vector/decor-yellow-long.svg" alt="裝飾圖示"> -->
-        <h2>參考資料｜Polishy｜你的神經多樣性導覽員</h2>
-    </div>
-
-    <main>
-
-
-<!-- 主要內容 -->
-    <h3>成人ADHD自填量表 (ASRS) 症狀檢核表</h3>
-    <p>
-        此測驗引用自<a 
-            href="https://www.hcp.med.harvard.edu/ncs/ftpdir/adhd/adhd/Old%20Versions/18Q-Chinese-Traditional.pdf" >哈佛大學之文件</a>。
-        回答問題時請選擇最能描述你過去六個月中的感受與行為的頻率。大約需花五分鐘完成，檢測結果僅為參考用，如需要專業協助請洽相關醫療單位。
-    </p>
+    <main class="page-main">
+        <div class="quiz-intro">
+            <h2>自我檢測</h2>
+            <h3>成人 ADHD 自填量表（ASRS）症狀檢核表</h3>
+            <p>
+                此測驗引用自<a href="https://www.hcp.med.harvard.edu/ncs/ftpdir/adhd/adhd/Old%20Versions/18Q-Chinese-Traditional.pdf"
+                    target="_blank" rel="noopener">哈佛大學之文件</a>。
+                回答問題時請選擇最能描述你過去六個月中的感受與行為的頻率。大約需花五分鐘完成，檢測結果僅為參考用，如需要專業協助請洽相關醫療單位。
+            </p>
+        </div>
 
     <form id="quiz">
         <!-- Part A Questions -->
@@ -251,105 +243,78 @@
         </div>
 
     </form>
-    <div class="container">
-        <button type="button" id="submit">送出結果</button>
-    </div>
 
-    <div class="results" id="results"></div>
-
-
-</main>
-    <!---------->
-    <!-- 頁尾 -->
-    <!---------->
-
-    <footer>
-        <div class="navbar-btm">
-            <li>
-                <a href="./ref.html">參考文獻</a>
-            </li>
-            <li>All Images are from&ensp;
-                <a href="https://www.vectorstock.com/royalty-free-vectors/vectors-by_Flashvector">Flashvector</a>
-            </li>
+        <div class="quiz-actions">
+            <button type="button" id="submit" class="btn">送出結果</button>
         </div>
-        <div class="text">
-            <small class="disclaimer">※本網站僅供學生練習用作品，無任何商業營利用途。</small><br>
-            <small class=" contact">如有任何問題或建議，請寄信至： <a href="mailto:uhalw95@gmail.com">uhalw95@gmail.com</a>
-            </small><br>
-            <small>Polishy &copy; 2025
-                <a href="https://lauraycwang.wordpress.com/">Yu-Chen Wang.</a>
-                All Rights Reserved.</small>
+
+        <div id="results" aria-live="polite"></div>
+    </main>
+
+    <!-- ============ Footer ============ -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <ul class="footer-links">
+                <li><a href="./ref.html">參考文獻</a></li>
+                <li>All images from
+                    <a href="https://www.vectorstock.com/royalty-free-vectors/vectors-by_Flashvector"
+                        target="_blank" rel="noopener">Flashvector</a>
+                </li>
+            </ul>
+            <div class="footer-meta">
+                <small>※ 本網站僅供學生練習用作品，無任何商業營利用途。</small><br>
+                <small>如有任何問題或建議，請寄信至：<a href="mailto:uhalw95@gmail.com">uhalw95@gmail.com</a></small><br>
+                <small>Polishy &copy; 2025
+                    <a href="https://lauraycwang.wordpress.com/" target="_blank" rel="noopener">Yu-Chen Wang.</a>
+                    All Rights Reserved.</small>
+            </div>
         </div>
     </footer>
 
-    <!---------->
-    <!-- JS程式區 -->
-    <!---------->
-
+    <!-- ============ Quiz scoring ============ -->
     <script>
         document.getElementById('submit').addEventListener('click', function () {
             const form = document.getElementById('quiz');
             const resultsContainer = document.getElementById('results');
             const questions = form.querySelectorAll('.question');
-            let scoreA = 0, scoreB = 0, countA = 0, countB = 0;
-            let allAnswered = true;  // Flag to track if all questions are answered
-    
-            // Calculate scores for Part A and Part B
+            let scoreA = 0, scoreB = 0;
+            let allAnswered = true;
+
             questions.forEach(question => {
                 const input = question.querySelector('input[type="radio"]:checked');
-                if (!input) {
-                    allAnswered = false;  // Set flag to false if a question is not answered
-                    return;
-                }
+                if (!input) { allAnswered = false; return; }
                 const value = parseInt(input.value, 10);
-                const part = question.getAttribute('data-part');
-    
-                if (part === 'A') {
-                    scoreA += value;
-                    countA++;
-                } else if (part === 'B') {
-                    scoreB += value;
-                    countB++;
-                }
+                if (question.dataset.part === 'A') scoreA += value;
+                else if (question.dataset.part === 'B') scoreB += value;
             });
-    
+
             if (!allAnswered) {
-                alert("請回答所有問題！");
-                return; 
+                resultsContainer.innerHTML = '<p class="score">請回答所有問題後再送出 🙏</p>';
+                resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
             }
-    
-            // Total scores
+
             const totalScore = scoreA + scoreB;
-    
-            // ADHD Evaluation based on total score
-            let adhdMessage = '';
-            if (totalScore <= 16) {
-                adhdMessage = "不太可能有ADHD";
-            } else if (totalScore <= 23) {
-                adhdMessage = "很可能有ADHD";
-            } else {
-                adhdMessage = "非常可能有ADHD";
-            }
-    
-            // Display the results
+            let adhdMessage;
+            if (totalScore <= 16) adhdMessage = '不太可能有 ADHD';
+            else if (totalScore <= 23) adhdMessage = '很可能有 ADHD';
+            else adhdMessage = '非常可能有 ADHD';
+
             resultsContainer.innerHTML = `
-                Part A 總分: ${scoreA}<br>
-                Part B 總分: ${scoreB}<br>
-                總計分數: ${totalScore}<br>
-                評估結果: ${adhdMessage}<br>
-                Part A 得分與不專心狀況為主，Part B 得分與過動、衝動傾向為主。<br>
-                如果分數評估結果為23分以上，建議可洽醫療單位做更詳細評估。
+                Part A 總分：${scoreA}　/　Part B 總分：${scoreB}<br>
+                總計分數：<span class="score">${totalScore}</span><br>
+                評估結果：<span class="score">${adhdMessage}</span><br>
+                Part A 得分以不專心狀況為主，Part B 得分以過動、衝動傾向為主。<br>
+                <small>若分數為 23 分以上，建議可洽醫療單位做更詳細評估。本結果僅供參考。</small>
             `;
+            resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
     </script>
 
-
-
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <!-- JS -->
-    <script src="./js/script.js"></script>
+    <!-- GSAP + site JS -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script defer src="./js/script.js"></script>
 </body>
 
 </html>

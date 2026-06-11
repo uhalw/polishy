@@ -1,16 +1,54 @@
-// 間距
+// ------------------------------------------------------------
+// Design tokens — spacing, radius, shadow, motion, layout
+// ------------------------------------------------------------
 
-// 速率
+// 間距 spacing scale (8px base)
+$space-2xs: 0.25rem; //  4px
+$space-xs:  0.5rem;  //  8px
+$space-sm:  0.75rem; // 12px
+$space-md:  1rem;    // 16px
+$space-lg:  1.5rem;  // 24px
+$space-xl:  2.5rem;  // 40px
+$space-2xl: 4rem;    // 64px
+$space-3xl: 6rem;    // 96px
 
-// 特效
+// 區塊上下節奏 section rhythm (fluid)
+$section-y: clamp(3.5rem, 8vw, 7rem);
 
-// 圓角
+// 圓角 radius
+$radius-sm: 8px;
+$radius-md: 16px;
+$radius-lg: 24px;
+$radius-pill: 999px;
 
-//z-index
+// 陰影 elevation
+$shadow-sm: 0 1px 3px rgba(36, 36, 36, 0.06), 0 1px 2px rgba(36, 36, 36, 0.08);
+$shadow-md: 0 6px 18px rgba(36, 36, 36, 0.08), 0 2px 6px rgba(36, 36, 36, 0.06);
+$shadow-lg: 0 18px 48px rgba(36, 36, 36, 0.14);
 
+// 速率 / 緩動 motion
+$ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+$ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+$dur-fast: 150ms;
+$dur: 280ms;
+$dur-slow: 500ms;
 
+// 版面寬度 layout containers
+$container: 1180px;
+$container-narrow: 760px;
+$page-gutter: clamp(1.25rem, 5vw, 5rem);
 
-// RWD斷點
+// z-index layers
+$z-bubble: -1;
+$z-base: 1;
+$z-nav: 100;
+$z-popup: 1000;
+
+// RWD 斷點 breakpoints
+$bp-sm: 640px;
+$bp-md: 1024px;
+
+// legacy aliases (kept for reference)
 $mediaSm: 'max-width: 640px';
 $mediaSmUp: 'min-width: 641px';
 $mediaMd: 'max-width: 1023px';
